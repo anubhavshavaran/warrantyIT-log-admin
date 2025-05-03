@@ -1,12 +1,12 @@
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import Log from "@/constants/Log.ts";
 import axiosInstance from "@/services/axiosInstance.ts";
 import {useEffect, useState} from "react";
 
@@ -24,7 +24,7 @@ function TablePage() {
             setLogs(data.data.logs);
         }
 
-        action();
+        action().then(() => {});
     }, []);
 
     return (
@@ -41,7 +41,7 @@ function TablePage() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {logs?.map((log, index) => (
+                    {logs?.map((log: Log, index) => (
                         <TableRow key={index}>
                             <TableCell>{log?.logId}</TableCell>
                             <TableCell>{log?.userId}</TableCell>
